@@ -13,7 +13,7 @@
     "content_scripts": [
         {
             "matches": ["https://web.whatsapp.com/*"],
-            "js": ["src/js/replace.js"]
+            "js": ["src/js/jquery.min.js","src/js/replace.js"]
         }
     ]
   }
