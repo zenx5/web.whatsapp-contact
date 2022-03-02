@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}

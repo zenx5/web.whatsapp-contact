@@ -28,8 +28,8 @@ $(document).ready(_=>{
     function render(){
         if( $(".zoWT4 span").length != 0 ) {
             $(".zoWT4 span").each( function(index) {
-                let content = $(this).text();
-                let finded = contacts.find( contact => contact.number.replace(/[+ -]/g,"") == content.replace(/[+ -]/g,"") )
+                let title = $(this).attr('title');
+                let finded = contacts.find( contact => contact.number.replace(/[+ -]/g,"") == title.replace(/[+ -]/g,"") ) //.replace(/[+ -]/g,"")
                 if( finded ){
                     $(this).text( finded.name )
                 }
