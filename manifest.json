@@ -16,6 +16,7 @@
             "128": "/logo.png"
         }
     },
+    "options_page": "contacts.html",
     "content_scripts": [
         {
             "matches": ["https://web.whatsapp.com/*"],
