@@ -1,31 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!--meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title-->
+    <meta charset="UTF-8">
+    <link href="./src/css/fonts.css" rel="stylesheet">
+    <link href="./src/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="./src/css/bootstrap.min.css" rel="stylesheet">        
     <script src="src/js/jquery.min.js"></script>
     <script src="src/js/popup.js"></script>
     <link rel="stylesheet" href="src/css/popup.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 </head>
 <body>
     <div class="container">
-        <div class="inputs">
-            <label>
-                Nombre:
-                <input type="text" id="name" />
-            </label>
-            <label>
-                Numero:
-                <input type="text" id="number" />
-            </label>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label class="form-label">Nombre:</label>
+                    <input class="form-control" type="text" id="name" />
+                </div>
+            </div>
         </div>
-        <div class="buttons">
-            <button id="save">Guardar</button>
-            <button id="remove">Borrar</button>
-            <button id="clear">Borrar Todo</button>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                    <label class="form-label">Numero:</label>
+                    <input class="form-control" type="text" id="number" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-primary" id="save">Guardar</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-secondary" id="remove">Borrar</button>
+            </div>
+            <div class="col">
+                <button class="btn btn-danger" id="clear">Borrar Todo</button>
+            </div>
+
         </div>
     </div>
+    <script src="./src/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
