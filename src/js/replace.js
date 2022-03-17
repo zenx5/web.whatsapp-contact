@@ -7,25 +7,13 @@ $(document).ready(_=>{
     });
     
     window.port.onMessage.addListener( response => {
-        if( response.action == 'clear' ) {
-            localStorage.removeItem('contacts');
-        }else if( response.action == 'add' ) {
-            let finded = contacts.find( contact => contact.number == response.number )
-            if( ! finded ){
-                contacts.push({
-                    number: response.number,
-                    name: response.name
-                })
-                localStorage.setItem( 'contacts', JSON.stringify( contacts ) )
-            }
-        }else if( response.action == 'remove' ) {
-            contacts = contacts.filter( contact => contact.number != response.number )
-            localStorage.setItem( 'contacts', JSON.stringify( contacts ) )
+        if ( response.action == 'updateData' ) {
+            contacts = response.contacts
+            render( response.contacts );
         }
-        
     });
     
-    function render(){
+    function render( contacts ){
         if( $(".zoWT4 span").length != 0 ) {
             $(".zoWT4 span").each( function(index) {
                 let title = $(this).attr('title');
@@ -39,6 +27,9 @@ $(document).ready(_=>{
         
     }
 
-    setInterval(render,500)
-
+    setInterval( _ => {
+        port.postMessage({
+            action: 'getData'
+        })
+    }, 5000 )
 })
