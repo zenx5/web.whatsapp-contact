@@ -1,15 +1,15 @@
 $(document).ready( function() {
     $('#save').click( _ => {
-        chrome.storage.local.set({
-            action : 'add',
+        let contact = {
             number : $('#number').val(),
             name : $('#name').val()
-        });
-        chrome.storage.local.set({
-            action : '',
-            number : '',
-            name: ''
-        });
+        }
+        if ( contact.number && contact.name )
+            chrome.storage.local.get("contacts", data => {
+                contacts = data.contacts;
+                contacts.push( contact );
+                chrome.storage.local.set({contacts: contacts})
+            });
         $('#number').val('')
         $('#name').val('')
     });
@@ -29,16 +29,7 @@ $(document).ready( function() {
     });
     $('#clear').click( _ => {
         chrome.storage.local.set({
-            action : 'clear',
-            number : '',
-            name : ''
+            contacts: []
         });
-        chrome.storage.local.set({
-            action : '',
-            number : '',
-            name: ''
-        });
-        $('#number').val('')
-        $('#name').val('')
     });
 })

@@ -7,6 +7,10 @@ $(document).ready(_=>{
     });
     
     window.port.onMessage.addListener( response => {
+        console.log(response)
+        if ( response.action == 'updateData' ) {
+            render( response.contacts );
+        }
         if( response.action == 'clear' ) {
             localStorage.removeItem('contacts');
         }else if( response.action == 'add' ) {
@@ -25,7 +29,7 @@ $(document).ready(_=>{
         
     });
     
-    function render(){
+    function render( contacts ){
         if( $(".zoWT4 span").length != 0 ) {
             $(".zoWT4 span").each( function(index) {
                 let title = $(this).attr('title');
@@ -39,6 +43,8 @@ $(document).ready(_=>{
         
     }
 
-    setInterval(render,500)
+    port.postMessage({
+        action: 'getData'
+    })
 
 })
