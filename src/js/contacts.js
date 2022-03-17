@@ -3,7 +3,7 @@
 $(document).ready(function(){
     chrome.storage.local.get('contacts', ({contacts}) => {
         let list = contacts;
-        list.forEach( (element, index) => {
+        contacts.forEach( (element, index) => {
             $("#list")
                 .append(`<tr id='row-`+index+`'>
                             <th scope='row'>`+index+`</th>
@@ -26,12 +26,13 @@ $(document).ready(function(){
                 $(this).text('Editar')
                 let name = $("#row-"+id+" .name input").val()
                 let number = $("#row-"+id+" .number input").val()
-                list[id].name = name
-                list[id].number = number
+                contacts[id].name = name
+                contacts[id].number = number
                 $("#row-"+id+" .name").html('<label class="form-label">'+name+'</label>')
                 $("#row-"+id+" .number").html('<label class="form-label">'+number+'</label>')
+                chrome.storage.local.set({contacts: contacts})
             }
-            console.log( list )
+            console.log( contacts )
         });
     })
 

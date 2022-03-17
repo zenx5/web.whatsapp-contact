@@ -7,26 +7,10 @@ $(document).ready(_=>{
     });
     
     window.port.onMessage.addListener( response => {
-        console.log(response)
         if ( response.action == 'updateData' ) {
+            contacts = response.contacts
             render( response.contacts );
         }
-        if( response.action == 'clear' ) {
-            localStorage.removeItem('contacts');
-        }else if( response.action == 'add' ) {
-            let finded = contacts.find( contact => contact.number == response.number )
-            if( ! finded ){
-                contacts.push({
-                    number: response.number,
-                    name: response.name
-                })
-                localStorage.setItem( 'contacts', JSON.stringify( contacts ) )
-            }
-        }else if( response.action == 'remove' ) {
-            contacts = contacts.filter( contact => contact.number != response.number )
-            localStorage.setItem( 'contacts', JSON.stringify( contacts ) )
-        }
-        
     });
     
     function render( contacts ){
@@ -43,8 +27,9 @@ $(document).ready(_=>{
         
     }
 
-    port.postMessage({
-        action: 'getData'
-    })
-
+    setInterval( _ => {
+        port.postMessage({
+            action: 'getData'
+        })
+    }, 5000 )
 })

@@ -21,10 +21,10 @@ chrome.runtime.onConnect.addListener( function(port) {
         if ( response.action == 'getData' ) {
             chrome.storage.local.get("contacts", data => {
                 console.log(data)
-                contacts = data.contacts;
+                let contacts = data.contacts;
                 port.postMessage({
                     action: 'updateData',
-                    contacts: contacts.newValue
+                    contacts: contacts || []
                 });
             });
         }
